@@ -1,7 +1,3 @@
-Author: Tim Lindquist (Tim.Lindquist@asu.edu), ASU Polytechnic, CIDSE, SE
-Version: February 2020
-
-See http://pooh.poly.asu.edu/Mobile
 
 Purpose: demonstrate Json-RPC
 This program is executable on both Mac OS X and Windows.
