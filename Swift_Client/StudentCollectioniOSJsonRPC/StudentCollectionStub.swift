@@ -34,6 +34,8 @@ public class StudentCollectionStub {
         self.url = urlString
     }
     
+    
+    //MARK: Async Function
     // used by methods below to send a request asynchronously.
     // creates and posts a URLRequest that attaches a JSONRPC request as a Data object. The URL session
     // executes in the background and calls its completion handler when the result is available.
@@ -62,20 +64,10 @@ public class StudentCollectionStub {
         task.resume()
     }
 
-    func get(name: String, callback: @escaping (String, String?) -> Void) -> Bool{
-        var ret:Bool = false
-        StudentCollectionStub.id = StudentCollectionStub.id + 1
-        do {
-            let dict:[String:Any] = ["jsonrpc":"2.0", "method":"get", "params":[name], "id":StudentCollectionStub.id]
-            let reqData:Data = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions(rawValue: 0))
-            self.asyncHttpPostJSON(url: self.url, data: reqData, completion: callback)
-            ret = true
-        } catch let error as NSError {
-            print(error)
-        }
-        return ret
-    }
+    //MARK: STUB
+    ///////////////
     
+    //MARK:: getGeoByName
     func getGeoByName(name: String, callback: @escaping (String, String?) -> Void) -> Bool{
         var ret:Bool = false
         StudentCollectionStub.id = StudentCollectionStub.id + 1
@@ -92,6 +84,8 @@ public class StudentCollectionStub {
         return ret
     }
     
+    
+    //MARK: getGeo
     func getGeo(callback: @escaping (String, String?) -> Void) -> Bool{
         var ret:Bool = false
         StudentCollectionStub.id = StudentCollectionStub.id + 1
@@ -106,21 +100,7 @@ public class StudentCollectionStub {
         return ret
     }
     
-    
-    func getNames(callback: @escaping (String, String?) -> Void) -> Bool{
-        var ret:Bool = false
-        StudentCollectionStub.id = StudentCollectionStub.id + 1
-        do {
-            let dict:[String:Any] = ["jsonrpc":"2.0", "method":"getNames", "params":[ ], "id":StudentCollectionStub.id]
-            let reqData:Data = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions(rawValue: 0))
-            self.asyncHttpPostJSON(url: self.url, data: reqData, completion: callback)
-            ret = true
-        } catch let error as NSError {
-            print(error)
-        }
-        return ret
-    }
-    
+    //MARK: getLocatioName
     func getLocationName(callback: @escaping (String, String?) -> Void) -> Bool{
         var ret:Bool = false
         StudentCollectionStub.id = StudentCollectionStub.id + 1
@@ -134,21 +114,8 @@ public class StudentCollectionStub {
         }
         return ret
     }
-    
-    func add(student: Student, callback: @escaping (String, String?) -> Void) -> Bool{
-        var ret:Bool = false
-        StudentCollectionStub.id = StudentCollectionStub.id + 1
-        do {
-            let dict:[String:Any] = ["jsonrpc":"2.0", "method":"add", "params":[student.toDict()], "id":StudentCollectionStub.id]
-            let reqData:Data = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions(rawValue: 0))
-            self.asyncHttpPostJSON(url: self.url, data: reqData, completion: callback)
-            ret = true
-        } catch let error as NSError {
-            print(error)
-        }
-        return ret
-    }
-    
+
+    //MARK: Save Location
     func save_location(name: String, desc: String, cate: String, tit: String, add:String, ele:String, lat:String, lon:String, callback: @escaping (String, String?) -> Void) -> Bool{
         var ret:Bool = false
         StudentCollectionStub.id = StudentCollectionStub.id + 1
@@ -163,6 +130,7 @@ public class StudentCollectionStub {
         return ret
     }
     
+    //MARK: add Search
     func add_Search(address: String, lat:String, longt:String, name:String, desc:String, cate:String, title:String, elev:String, callback: @escaping (String, String?) -> Void) -> Bool{
         var ret:Bool = false
         StudentCollectionStub.id = StudentCollectionStub.id + 1
@@ -176,21 +144,8 @@ public class StudentCollectionStub {
         }
         return ret
     }
-    
-    func remove(studentName: String, callback: @escaping (String, String?) -> Void) -> Bool{
-        var ret:Bool = false
-        StudentCollectionStub.id = StudentCollectionStub.id + 1
-        do {
-            let dict:[String:Any] = ["jsonrpc":"2.0", "method":"remove", "params":[studentName], "id":StudentCollectionStub.id]
-            let reqData:Data = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions(rawValue: 0))
-            self.asyncHttpPostJSON(url: self.url, data: reqData, completion: callback)
-            ret = true
-        } catch let error as NSError {
-            print(error)
-        }
-        return ret
-    }
-    
+
+    //MARK: Remove Location
     func remove_location(name: String, callback: @escaping (String, String?) -> Void) -> Bool{
         var ret:Bool = false
         StudentCollectionStub.id = StudentCollectionStub.id + 1

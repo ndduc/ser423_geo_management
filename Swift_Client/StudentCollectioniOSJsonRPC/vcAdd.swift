@@ -1,10 +1,13 @@
-//
-//  vcAdd.swift
-//  StudentCollectioniOSJsonRPC
-//
-//  Created by mac on 3/18/20.
-//  Copyright © 2020 Tim Lindquist. All rights reserved.
-//
+/**
+ Author: Duc Nguyen
+ Authorization: Freeware
+ Purpose
+    Add Scene
+    In this scene user is allowed to perform search operation
+    search button only activated after user input text to the any visible textfield
+    If result not then search will return string invalid value
+    if result is found then the program will direct user to another scene - vcAddFinalize
+ */
 
 import UIKit
 
@@ -16,9 +19,7 @@ class vcAdd: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIPick
     @IBOutlet weak var txtCity: UITextField!
     @IBOutlet weak var txtZip: UITextField!
     @IBOutlet weak var txtAddress: UITextField!
-    
     @IBOutlet weak var btnCheck: UIButton!
-    
     @IBOutlet weak var pickerView: UIPickerView!
     
     
@@ -26,7 +27,7 @@ class vcAdd: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIPick
     var latitude = ""
 
     var urlString:String = "http://192.168.1.243:8080"
-    let state = ["AZ", "CA", "TX"]
+    let state = ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]
     
     
     override func viewDidLoad() {
@@ -45,7 +46,11 @@ class vcAdd: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIPick
     }
     
     
-    
+    //MARK: user-defined function
+    /**
+            set url function, it create a proper connection by the given variable
+                such as host name, port, and ip
+     */
     func setURL () -> String {
         var serverhost:String = "localhost"
         var jsonrpcport:String = "8080"
@@ -63,6 +68,14 @@ class vcAdd: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIPick
         return "\(serverprotocol)://\(serverhost):\(jsonrpcport)"
     }
     
+    
+    /***
+        add search value, function initiate geoGeo from stud
+        if search return valid value
+        function initate and direct user to vcAddFinalize
+        this function also pass these following values to the next scene
+                lattitude, longitute and address
+     */
     func addSearchValue(){
         let aConnect:StudentCollectionStub = StudentCollectionStub(urlString: urlString)
         let _:Bool = aConnect.getGeo(callback: { (res: String, err: String?) -> Void in
@@ -94,7 +107,11 @@ class vcAdd: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIPick
         })
     }
     
-    //MARK: check Event
+    //MARK: system function - aka Event
+    
+    /*
+        onlick function, after triggered it will find addSearchValue() function
+     **/
     @IBAction func btnCheckedClicked(_ sender: Any) {
         
        // print(txtAddress.text)
@@ -124,10 +141,4 @@ class vcAdd: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIPick
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return state[row]
     }
-
-    //MARK: Passing Value to ViewController
-    
-    
-    
- 
 }

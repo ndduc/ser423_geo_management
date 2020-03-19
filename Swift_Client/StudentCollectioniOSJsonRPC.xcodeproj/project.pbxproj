@@ -19,7 +19,6 @@
 		0494B4421C7CDFE400BB382A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0494B4401C7CDFE400BB382A /* LaunchScreen.storyboard */; };
 		0494B44D1C7CDFE400BB382A /* StudentCollectioniOSJsonRPCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B44C1C7CDFE400BB382A /* StudentCollectioniOSJsonRPCTests.swift */; };
 		0494B4581C7CDFE400BB382A /* StudentCollectioniOSJsonRPCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B4571C7CDFE400BB382A /* StudentCollectioniOSJsonRPCUITests.swift */; };
-		0494B4661C7CDFFD00BB382A /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B4651C7CDFFD00BB382A /* Student.swift */; };
 		0494B4681C7CE04E00BB382A /* StudentCollectionStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B4671C7CE04E00BB382A /* StudentCollectionStub.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +58,6 @@
 		0494B4531C7CDFE400BB382A /* StudentCollectioniOSJsonRPCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentCollectioniOSJsonRPCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0494B4571C7CDFE400BB382A /* StudentCollectioniOSJsonRPCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCollectioniOSJsonRPCUITests.swift; sourceTree = "<group>"; };
 		0494B4591C7CDFE400BB382A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0494B4651C7CDFFD00BB382A /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		0494B4671C7CE04E00BB382A /* StudentCollectionStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCollectionStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,14 +114,13 @@
 				0494B43B1C7CDFE400BB382A /* Main.storyboard */,
 				04455BA72422080800165368 /* vcAdd.swift */,
 				04455BAD2422CB4A00165368 /* vcAddFinalize.swift */,
+				04455BAF2422FD6D00165368 /* vcMod.swift */,
 				04455BA924229CEB00165368 /* GeoImpl.swift */,
 				0494B43E1C7CDFE400BB382A /* Assets.xcassets */,
 				0494B4401C7CDFE400BB382A /* LaunchScreen.storyboard */,
 				0494B4431C7CDFE400BB382A /* Info.plist */,
-				0494B4651C7CDFFD00BB382A /* Student.swift */,
 				0494B4671C7CE04E00BB382A /* StudentCollectionStub.swift */,
 				044A7D571E97AE9D00888DD4 /* ServerInfo.plist */,
-				04455BAF2422FD6D00165368 /* vcMod.swift */,
 			);
 			path = StudentCollectioniOSJsonRPC;
 			sourceTree = "<group>";
@@ -286,7 +283,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0494B43A1C7CDFE400BB382A /* ViewController.swift in Sources */,
-				0494B4661C7CDFFD00BB382A /* Student.swift in Sources */,
 				04455BA82422080800165368 /* vcAdd.swift in Sources */,
 				04455BAA24229CEB00165368 /* GeoImpl.swift in Sources */,
 				0494B4381C7CDFE400BB382A /* AppDelegate.swift in Sources */,

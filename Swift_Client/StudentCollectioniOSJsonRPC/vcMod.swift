@@ -1,8 +1,16 @@
 
+/**
+    Author: Duc Nguyen
+    Purpose: in this scene, user can view any existing data from server, user can also modify and remove these existing data at will
+        for the modification function, user can only modified some value such as
+                description, title, and category of the data
+ */
 
 import UIKit
 
 class vcMod: UIViewController, UIPickerViewDelegate, UITextFieldDelegate{
+    
+    //MARK: UI Components
     @IBOutlet weak var txtDesc: UITextField!
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var txtCate: UITextField!
@@ -11,19 +19,20 @@ class vcMod: UIViewController, UIPickerViewDelegate, UITextFieldDelegate{
     @IBOutlet weak var txtEve: UITextField!
     @IBOutlet weak var txtLat: UITextField!
     @IBOutlet weak var txtLong: UITextField!
-    
     @IBOutlet weak var namePicker: UIPickerView!
     
+    
+    
+    //MARK: Variables
     var selectedName:String=""
     var name:[String]=[String]()
     
     var urlString:String = "http://192.168.1.243:8080"
     
+    
+    //MARK: Main Override
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
         self.namePicker.removeFromSuperview()
         self.namePicker.delegate = self
         self.txtName.inputView = self.namePicker
@@ -40,6 +49,9 @@ class vcMod: UIViewController, UIPickerViewDelegate, UITextFieldDelegate{
         
     }
     
+    
+    //MARK: User-Defined Function
+    //creating proper connection
     func setURL () -> String {
         var serverhost:String = "localhost"
         var jsonrpcport:String = "8080"
@@ -57,6 +69,10 @@ class vcMod: UIViewController, UIPickerViewDelegate, UITextFieldDelegate{
         return "\(serverprotocol)://\(serverhost):\(jsonrpcport)"
     }
     
+    /*Genereate proper data for pickview
+        pickview is only activate when user click on name text field
+        notice: name is key elemnt of data
+     */
     func callGetNamesNUpdateStudentsPicker() {
         let aConnect:StudentCollectionStub = StudentCollectionStub(urlString: urlString)
         let _:Bool = aConnect.getLocationName(callback: { (res: String, err: String?) -> Void in
@@ -84,6 +100,10 @@ class vcMod: UIViewController, UIPickerViewDelegate, UITextFieldDelegate{
         })  // end of method call to getNames
     }
     
+    /*
+        this method will be called after user choose the name
+        method set call getGeoByName from Server then set text to the designated textfield
+     **/
     func callGetNPopulatUIFields(_ name: String){
         print(name)
         let aConnect:StudentCollectionStub = StudentCollectionStub(urlString: urlString)
@@ -112,8 +132,16 @@ class vcMod: UIViewController, UIPickerViewDelegate, UITextFieldDelegate{
     })
     }
     
+    // UITextFieldDelegate Method
+     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         self.txtName.resignFirstResponder()
+         return true
+     }
     
     
+    
+    //MARK: System Function
+    //remove function - data will be removed by name in name text field
     @IBAction func removeClicked(_ sender: Any) {
         let aConnect:StudentCollectionStub = StudentCollectionStub(urlString: urlString)
         let _:Bool = aConnect.remove_location(name: self.name[0], callback: { (res: String, err: String?) -> Void in
@@ -123,6 +151,7 @@ class vcMod: UIViewController, UIPickerViewDelegate, UITextFieldDelegate{
         })
     }
     
+    //save funciton - data will be saved to server by name and only description, category, and title are avaiblable for user to modify
     @IBAction func saveClicked(_ sender: Any) {
         let aConnect:StudentCollectionStub = StudentCollectionStub(urlString: urlString)
         let _:Bool = aConnect.save_location(name: self.name[0], desc: self.txtDesc.text!, cate: self.txtCate.text!, tit: self.txtTitle.text!, add: self.txtStreet.text!, ele:txtEve.text!, lat:txtLat.text!, lon:txtLong.text!, callback: { (res: String, err: String?) -> Void in
@@ -140,11 +169,7 @@ class vcMod: UIViewController, UIPickerViewDelegate, UITextFieldDelegate{
          self.txtName.resignFirstResponder()
      }
 
-     // UITextFieldDelegate Method
-     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-         self.txtName.resignFirstResponder()
-         return true
-     }
+     
     
     @objc func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == namePicker {
