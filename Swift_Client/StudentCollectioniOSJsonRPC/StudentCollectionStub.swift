@@ -149,6 +149,20 @@ public class StudentCollectionStub {
         return ret
     }
     
+    func save_location(name: String, desc: String, cate: String, tit: String, add:String, ele:String, lat:String, lon:String, callback: @escaping (String, String?) -> Void) -> Bool{
+        var ret:Bool = false
+        StudentCollectionStub.id = StudentCollectionStub.id + 1
+        do {
+            let dict:[String:Any] = ["jsonrpc":"2.0", "method":"save_location", "params":[name, desc, cate, tit, add, ele, lat, lon], "id":StudentCollectionStub.id]
+            let reqData:Data = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions(rawValue: 0))
+            self.asyncHttpPostJSON(url: self.url, data: reqData, completion: callback)
+            ret = true
+        } catch let error as NSError {
+            print(error)
+        }
+        return ret
+    }
+    
     func add_Search(address: String, lat:String, longt:String, name:String, desc:String, cate:String, title:String, elev:String, callback: @escaping (String, String?) -> Void) -> Bool{
         var ret:Bool = false
         StudentCollectionStub.id = StudentCollectionStub.id + 1

@@ -124,6 +124,12 @@ class vcMod: UIViewController, UIPickerViewDelegate, UITextFieldDelegate{
     }
     
     @IBAction func saveClicked(_ sender: Any) {
+        let aConnect:StudentCollectionStub = StudentCollectionStub(urlString: urlString)
+        let _:Bool = aConnect.save_location(name: self.name[0], desc: self.txtDesc.text!, cate: self.txtCate.text!, tit: self.txtTitle.text!, add: self.txtStreet.text!, ele:txtEve.text!, lat:txtLat.text!, lon:txtLong.text!, callback: { (res: String, err: String?) -> Void in
+            if err != nil {
+                NSLog(err!)
+            }
+        })
     }
     
     
